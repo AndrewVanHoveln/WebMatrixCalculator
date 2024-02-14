@@ -1,0 +1,35 @@
+.about-me {
+    color: #FFF;
+    background: url('../../../public/images/img-3.jpg') center center/cover
+    no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bio > p, .bio > ul{ 
+    font-size: 28px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width: 960px) {
+    .about-me > h1{
+        font-size: 40px;
+    }
+    .bio > p, .bio > ul{
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-me > h1{
+        font-size: 28px;
+    }
+    .bio > p, .bio > ul{
+        font-size: 14px;
+    }
+}
