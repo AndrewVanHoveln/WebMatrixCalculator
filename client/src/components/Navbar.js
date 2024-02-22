@@ -8,7 +8,7 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  
+
   return (
     <>
         <nav className="navbar">
@@ -38,6 +38,11 @@ function Navbar() {
                     <li className='nav-item'>
                         <Link to ='/calculator' className='nav-links' onClick={closeMobileMenu}>
                             Matrix Calculator
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link to ='/sentence-tagging' className='nav-links' onClick={closeMobileMenu}>
+                            Sentence Tagger
                         </Link>
                     </li>
                 </ul>

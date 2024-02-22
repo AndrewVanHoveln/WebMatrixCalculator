@@ -1,7 +1,17 @@
 from flask import Blueprint, request, jsonify, redirect, url_for
 import numpy as np
+import sentenceTagging as st
+import sys
 
 views = Blueprint(__name__, "views")
+
+# Here we do our initilization for sentence tagging
+try:
+    wordsAndTags, tags, corpus = st.processfile()
+except:
+    print("Loading the data into the program failed", file=sys.stderr)
+
+table = st.createTransitionProbTable(corpus, tags)
 
 @views.route("/home")
 def home():
@@ -57,3 +67,12 @@ def subtract():
             return jsonify({"c": c.tolist()})
         except:
             return jsonify({"c" : [[]]})
+
+@views.route("/sentence-tag", methods=['POST'])
+def sentenceTag():
+    if request.method == 'POST':
+        data = request.json
+        sentence = data.get('sentence', '')
+        sentence = sentence.lower()
+        path = st.viterbi(sentence, wordsAndTags, tags, table)
+        return jsonify(path)
