@@ -2,6 +2,7 @@
 # Author: Andrew Van Hoveln
 
 import numpy as np
+import re
 
 # Method to process input file into usable data
 def processfile():
@@ -88,8 +89,18 @@ def viterbi(sentence, wordsAndTags, tags, transitionProbTable):
     V = [{}]
     backptr = [{}]
 
+    # move last puncutation mark to the end
+    punctuation_marks = {'.', ',', '!', '?', ';', ':'}
+    if sentence[-1] in punctuation_marks:
+        sentence = sentence[:-1] + ' ' + sentence[-1]
+
+    def split_sentence(sentence):
+        # Split the sentence by punctuation marks and spaces
+        tokens = re.findall(r"[\w']+|[^\w\s]", sentence)
+        return tokens
+
     # split the sentence
-    sentence = sentence.split()
+    sentence = split_sentence(sentence)
 
     # find the intial viterbi variables for starting two tags
     for tag in tags:

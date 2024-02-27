@@ -7,8 +7,7 @@
   
 .home,
 .resume,
-.about-me,
-.calculator {
+.about-me{
   display: flex;
   height: 90vh;
   align-items: center;

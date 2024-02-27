@@ -8,7 +8,9 @@ function HeroSection(){
             <video src="/videos/video-1.mp4" autoPlay loop muted />
             <div className="textblock">
                 <h1>Welcome</h1>
-                <p>This is my personal website where I have a page for my resume, a page that tells you a bit about me, and a page for a full stack matrix operation web app that i created.</p>
+                <p>This is my personal website where I have a page for my resume,
+                 a page that tells you a bit about me,
+                 and a pages for full stack matrix operation and sentence tagging web apps that i created.</p>
             </div>
         </div>
     );

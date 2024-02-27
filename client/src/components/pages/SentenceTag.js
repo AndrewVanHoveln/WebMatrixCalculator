@@ -21,7 +21,28 @@ function SentenceTag() {
             res => res.json()
         ).then(
             data => {
-                const words = text.split(/\W+/);
+                const words = [];
+                let word = '';
+                const punctuation = ['.', ',', '!', '?', ';', ':']
+                for (let i = 0; i < text.length; i++){
+                    if(text[i] === ' ' && word.length > 0){
+                        words.push(word)
+                        word = ''
+                    }
+                    if(punctuation.includes(text[i])){
+                        words.push(word)
+                        words.push(text[i])
+                        word = ''
+                    }
+                    else {
+                        word += text[i]
+                    }
+                }
+                for(let i = 0; i < data.length; i++){
+                    if (punctuation.includes(data[i])){
+                        data[i] = 'PUNCTUATION'
+                    }
+                }
                 setTags(data);
                 setArrSentence(words);
             }

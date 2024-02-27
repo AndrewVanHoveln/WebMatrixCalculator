@@ -32,7 +32,7 @@ def multiply():
             c = np.dot(a, b)
             return jsonify({"c": c.tolist()})
         except:
-            return jsonify({"c" : [[]]})
+            return jsonify({"c" : [[]]}), 400
         
 
 @views.route("/add", methods=['POST'])
@@ -44,12 +44,12 @@ def add():
 
         try:
             if len(a) != len(b) or len(a[0]) != len(b[0]):
-                return {"c" : [[]]}
+                return {"c" : [[]]}, 400
             c = a + b
             
             return jsonify({"c": c.tolist()})
         except:
-            return jsonify({"c" : [[]]})
+            return jsonify({"c" : [[]]}), 400
 
         
 @views.route("/subtract", methods=['POST'])
@@ -60,13 +60,14 @@ def subtract():
         b = np.array(data.get('b', []))
 
         try:
-            if len(a) != len(b) or len(a[0]) != len(b[0]):
-                return {"c" : [[]]}
+            if a.shape != b.shape:
+                return {"c" : [[]]}, 400
             c = a - b
+
             
             return jsonify({"c": c.tolist()})
         except:
-            return jsonify({"c" : [[]]})
+            return jsonify({"c" : [[]]}), 400
 
 @views.route("/sentence-tag", methods=['POST'])
 def sentenceTag():

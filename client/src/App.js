@@ -6,6 +6,7 @@ import Home from './components/pages/Home'
 import AboutMe from './components/pages/AboutMe';
 import Resume from './components/pages/Resume';
 import SentenceTag from './components/pages/SentenceTag';
+import MatrixCalculator from './components/pages/MatrixCalculator';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/about-me' exact Component={AboutMe}/>
           <Route path='/resume' exact Component={Resume}/>
           <Route path='/sentence-tagging' exact Component={SentenceTag}/>
+          <Route path='/calculator' exact Component={MatrixCalculator}/>
         </Routes>
       </Router>
     </>

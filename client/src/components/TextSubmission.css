@@ -3,11 +3,12 @@
     justify-content: center; 
     flex-direction: column; 
     align-items: center; 
-    height: 50vh; 
+    height: 40vh; 
+    padding: 0px;
 }
 
 .submssion-area > textarea{
-    height: 50%;
+    height: 60%;
     width: 25%;
     background-color: #AAAAAA;
     color: black;
