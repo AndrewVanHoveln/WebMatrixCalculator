@@ -11,6 +11,11 @@ function SentenceTag() {
     const handleTextSubmit = (text) => {
         setSubmittedText(text);
 
+        const punctuation = ['.', ',', '!', '?', ';', ':']
+        if(!punctuation.includes(text[text.length-1])){
+            text += '.'
+        }
+
         fetch("/sentence-tag", {
             method: 'POST',
             headers: {
@@ -23,7 +28,6 @@ function SentenceTag() {
             data => {
                 const words = [];
                 let word = '';
-                const punctuation = ['.', ',', '!', '?', ';', ':']
                 for (let i = 0; i < text.length; i++){
                     if(text[i] === ' ' && word.length > 0){
                         words.push(word)
@@ -38,7 +42,7 @@ function SentenceTag() {
                         word += text[i]
                     }
                 }
-                if(word){words.push(word)}
+                if(word) {words.push(word)}
                 for(let i = 0; i < data.length; i++){
                     if (punctuation.includes(data[i])){
                         data[i] = 'PUNCTUATION'
