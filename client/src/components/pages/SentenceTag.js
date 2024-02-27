@@ -38,6 +38,7 @@ function SentenceTag() {
                         word += text[i]
                     }
                 }
+                if(word){words.push(word)}
                 for(let i = 0; i < data.length; i++){
                     if (punctuation.includes(data[i])){
                         data[i] = 'PUNCTUATION'
