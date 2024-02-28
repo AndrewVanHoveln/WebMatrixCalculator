@@ -24,24 +24,31 @@ function MatrixCalculator() {
 
     const handleTextSubmit = async () => {
         setErrMsg('');
-        setMatC([])
+        setMatC([]);
 
         if(!a || !b){
             setErrMsg("One of the matricies is blank!");
             return;
         }
-        let aMat = JSON.parse(a)
-        let bMat = JSON.parse(b)
+        let aMat = [];
+        let bMat = [];
+        try{
+            aMat = JSON.parse(a);
+            bMat = JSON.parse(b);
+        }
+        catch(err){
+            setErrMsg("Matrix Formatting Incorrect");
+            return;
+        }
+        
 
         if (!Array.isArray(aMat[0])) {
             aMat = [aMat]
         }
-        console.log(aMat)
 
         if (!Array.isArray(bMat[0])) {
             bMat = [bMat]
         }
-        console.log(bMat)
 
         let url = 'http://127.0.0.1:8000/'; 
 
@@ -52,7 +59,7 @@ function MatrixCalculator() {
         url += selectedOption
         
 
-        if(!aMat || !bMat){
+        if(aMat.length < 0 || bMat < 0){
             setErrMsg("Matricies entered incorrectly!");
             return;
         }
@@ -85,32 +92,44 @@ function MatrixCalculator() {
 
     return (
         <div className="matrix-calculator">
+            <h1>Welcome to the matrix calculator! <br/></h1>
+            <p>To use this calculator you need to type in the matricies in a 2D Array Format.<br/><br/>
+            For Example:<br/>
+            [[1,2,3,4],<br/>
+            [1,2,3,4],<br/>
+            [1,2,3,4]]<br/><br/><br/></p>
             <div className="textBoxes">
                 <div className="a-box">
                     <label htmlFor="paragraphBox">Enter Matrix A:</label><br />
                     <textarea id="paragraphBox" name="paragraphBox" rows="4" cols="50" value={a} onChange={handleAChange}></textarea><br />
                 </div>
                 <div className="b-box">
-                    <label htmlFor="paragraphBox">Enter Matrix A:</label><br />
+                    <label htmlFor="paragraphBox">Enter Matrix B:</label><br />
                     <textarea id="paragraphBox" name="paragraphBox" rows="4" cols="50" value={b} onChange={handleBChange}></textarea><br />
                 </div>
+            </div>
+            <div className="controls">
                 <RadioOptions handleOptionChange={handleOptionChange} selectedOption={selectedOption}/>
                 <button onClick={handleTextSubmit}>Calculate!</button>
             </div>
+            
             {errorMsg && <div className="err-msg">{errorMsg}</div>}
-            {c && <div className="mat-c">
-                <table border="1">
-                    <tbody>
-                        {c.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
-                                {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex}>{cell}</td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>}
+            {c.length > 0 && (
+                <div className="mat-c">
+                    <label>Resulting Matrix C: <br/></label>
+                    <table border="1">
+                        <tbody>
+                            {c.map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {row.map((cell, cellIndex) => (
+                                        <td key={cellIndex}>{cell}</td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function RadioOptions({handleOptionChange, selectedOption}) {
   return (
@@ -11,7 +11,7 @@ function RadioOptions({handleOptionChange, selectedOption}) {
         checked={selectedOption === 'multiply'}
         onChange={handleOptionChange}
       />
-      <label htmlFor="option1">multiply</label><br />
+      <label htmlFor="option1">Multiply</label><br />
 
       <input
         type="radio"
@@ -21,7 +21,7 @@ function RadioOptions({handleOptionChange, selectedOption}) {
         checked={selectedOption === 'add'}
         onChange={handleOptionChange}
       />
-      <label htmlFor="option2">add</label><br />
+      <label htmlFor="option2">Add</label><br />
 
       <input
         type="radio"
@@ -31,7 +31,7 @@ function RadioOptions({handleOptionChange, selectedOption}) {
         checked={selectedOption === 'subtract'}
         onChange={handleOptionChange}
       />
-      <label htmlFor="option3">subtract</label><br />
+      <label htmlFor="option3">Subtract</label><br />
     </div>
   );
 }
